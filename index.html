@@ -1,540 +1,677 @@
-<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Taylor Swift Album Tracklist Order</title>
-<style>
-  body {
-		padding: 25px;
-		background-color: white;
-		color: black;
-    font-family: Arial, sans-serif;
-	}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Taylor's Tracklist InOrder</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css?family=Inter:400,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+        }
 
-	.dark-mode {
-		background-color: rgb(22, 22, 22);
-		color: white;
-	}
+        .table-header {
+            width: calc(100% / 12);
+            padding: 1rem; /* Add padding for cell spacing */
+            border-spacing: 0;
+            border-collapse: separate;
+        }
 
-  .dark-mode th.album-title {
-    background-color: #072640; /* Slightly darker background for album titles */
-  }
+        .rounded-tl { border-top-left-radius: 0.5rem; } /* Top left radius */
+        .rounded-tr { border-top-right-radius: 0.5rem; } /* Top right radius */
+        .rounded-bl { border-bottom-left-radius: 0.5rem; } /* Bottom left radius */
+        .rounded-br { border-bottom-right-radius: 0.5rem; } /* Bottom right radius */
+        .table-cell { border-radius: 0.25rem; } /* Rounded corners for all cells */
+        
+        .bg-debut { background-color: #a9eee4; } /* Green */
+        .bg-fearless { background-color: gold; } /* Gold Yellow */
+        .bg-speak-now { background-color: #8a2be2; } /* Purple */
+        .bg-red { background-color: #FF0000; } /* Red */
+        .bg-1989 { background-color: #7FFFD4; } /* Aquamarine */
+        .bg-reputation { background-color: #000000; } /* Black */
+        .bg-lover { background-color: #FFC0CB; } /* Pink */
+        .bg-folklore { background-color: #D3D3D3; } /* Light Grey */
+        .bg-evermore { background-color: #d2b48c; } /* Brown */
+        .bg-midnights { background-color: #0000FF; } /* Blue */
+        .bg-ttpd { background-color: #26221F; } /* Cream */
 
-  table {
-    border-collapse: collapse;
-    width: 100%;
-  }
+        .text-shadow {
+            text-shadow: 0px 2px 4px rgb(0, 0, 0);
+        }
 
-  th, td {
-    border: 1px solid #dddddd;
-    text-align: center;
-    padding: 8px;
-  }
+        .track-name {
+            font-size: 0.75rem; /* Smaller font size for track names */
+        }
 
-  th {
-    text-align: center;
-  }
+        .right-aligned-text {
+            text-align: right;
+        }
 
-  th.album-title {
-    background-color: #a9eee4; /* Debut: light sea foam/ aqua green */
-  }
+        .glow-effect {
+            animation: glow 1.5s ease-in-out infinite alternate;
+            position: relative; /* Make sure z-index is effective */
+            z-index: 100; /* Higher than the z-index (if any) of elements that might cover it */
+        }
 
-  th.album-title.fearless {
-    background-color: gold; /* Fearless TV: Gold */
-  }
+       @keyframes glow {
+            from {
+                box-shadow: 0 0 16px rgba(104, 112, 218, 0.75), 0 0 24px rgba(104, 112, 218, 0.75);
+            }
+            to {
+                box-shadow: 0 0 30px rgba(129, 140, 248, 0.75), 0 0 40px rgba(129, 140, 248, 0.75);
+            }
+        }
 
-  th.album-title.speak-now {
-    background-color: #8a2be2; /* Speak Now: Violet / Indigo */
-  }
-
-  th.album-title.red {
-    background-color: red; /* RED TV: Red */
-  }
-
-  th.album-title.1989 {
-    background-color: #add8e6; /* 1989: Light Blue */
-  }
-
-  th.album-title.reputation {
-    background-color: black; /* reputation: Black */
-    color: white;
-  }
-
-  th.album-title.lover {
-    background-color: #ffc0cb; /* Lover: Pastel Pink */
-  }
-
-  th.album-title.folklore {
-    background-color: #d3d3d3; /* folklore: light grey */
-  }
-
-  th.album-title.evermore {
-    background-color: #d2b48c; /* evermore: beige/ brown */
-  }
-  
-  th.album-title.midnights {
-    background-color: #000080; /* Midnights: Navy Blue */
-    color: white;
-  }
-
-  th.album-title.the-tortured-poets-department {
-    background-color: #26221F; /* tba */
-    color: white;
-  }
-</style>
+        .donate-button {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 20vh; /* Set height to full viewport height */
+        }
+    </style>
 </head>
-<body>
-  <div>
-		<button onclick="darkMode()">Darkmode</button>
-	</div>
-	<script>
-		function darkMode() {
-			var element = document.body;
-			element.classList.toggle("dark-mode");
-		}
-	</script>
-<table>
-  <thead>
-    <tr>
-      <th>Number</th>
-      <th class="album-title">Debut</th>
-      <th class="album-title fearless">Fearless TV</th>
-      <th class="album-title speak-now">Speak Now TV</th>
-      <th class="album-title red">Red TV</th>
-      <th class="album-title 1989">1989 TV</th>
-      <th class="album-title reputation">reputation</th>
-      <th class="album-title lover">Lover</th>
-      <th class="album-title folklore">folklore</th>
-      <th class="album-title evermore">evermore</th>
-      <th class="album-title midnights">Midnights</th>
-      <th class="album-title the-tortured-poets-department">The Tortured Poets Department</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>1</td>
-      <td>Tim McGraw</td>
-      <td>Fearless</td>
-      <td>Mine</td>
-      <td>State of Grace</td>
-      <td>Welcome to New York</td>
-      <td>...Ready for It?</td>
-      <td>I Forgot That You Existed</td>
-      <td>the 1</td>
-      <td>willow</td>
-      <td>Lavender Haze</td>
-      <td>Fortnight</td>
-    </tr>
-    <tr>
-      <td>2</td>
-      <td>Picture to Burn</td>
-      <td>Fifteen</td>
-      <td>Sparks Fly</td>
-      <td>Red</td>
-      <td>Blank Space</td>
-      <td>End Game</td>
-      <td>Cruel Summer</td>
-      <td>cardigan</td>
-      <td>champagne problems</td>
-      <td>Maroon</td>
-      <td>The Tortured Poets Department</td>
-    </tr>
-    <tr>
-      <td>3</td>
-      <td>Teardrops on My Guitar</td>
-      <td>Love Story</td>
-      <td>Back to December</td>
-      <td>Treacherous</td>
-      <td>Style</td>
-      <td>I Did Something Bad</td>
-      <td>Lover</td>
-      <td>the last great american dynasty</td>
-      <td>gold rush</td>
-      <td>Anti-Hero</td>
-      <td>My Boy Only Breaks His Favorite Toys</td>
-    </tr>
-    <tr>
-      <td>4</td>
-      <td>A Place in this World</td>
-      <td>Hey Stephen</td>
-      <td>Speak Now</td>
-      <td>I Knew You Were Trouble</td>
-      <td>Out of the Woods</td>
-      <td>Dont Blame Me</td>
-      <td>The Man</td>
-      <td>exile</td>
-      <td>tis the damn season</td>
-      <td>Snow on the Beach</td>
-      <td>Down Bad</td>
-    </tr>
-    <tr>
-      <td>5</td>
-      <td>Cold As You</td>
-      <td>White Horse</td>
-      <td>Dear John</td>
-      <td>All Too Well</td>
-      <td>All You Had to Do Was Stay</td>
-      <td>Delicate</td>
-      <td>The Archer</td>
-      <td>my tears ricochet</td>
-      <td>tolerate it</td>
-      <td>Youre on your own Kid</td>
-      <td>So Long, London</td>
-    </tr>
-    <tr>
-      <td>6</td>
-      <td>The Outside</td>
-      <td>You Belong with Me</td>
-      <td>Mean</td>
-      <td>22</td>
-      <td>Shake It Off</td>
-      <td>Look What You Made Me Do</td>
-      <td>I Think He Knows</td>
-      <td>mirrorball</td>
-      <td>nobody, no crime</td>
-      <td>Midnight Rain</td>
-      <td>But Daddy I Love Him</td>
-    </tr>
-    <tr>
-      <td>7</td>
-      <td>Tied Together With A Smile</td>
-      <td>Breathe</td>
-      <td>The Story of Us</td>
-      <td>I Almost Do</td>
-      <td>I Wish You Would</td>
-      <td>So it Goes...</td>
-      <td>Miss Americana & The Heartbreak Prince</td>
-      <td>seven</td>
-      <td>happiness</td>
-      <td>Question...?</td>
-      <td>Fresh Out the Slammer</td>
-    </tr>
-    <tr>
-      <td>8</td>
-      <td>Stay Beautiful</td>
-      <td>Tell Me Why</td>
-      <td>Never Grow Up</td>
-      <td>We Are Never Ever Getting Back Together</td>
-      <td>Bad Blood</td>
-      <td>Gorgeous</td>
-      <td>Paper Rings</td>
-      <td>august</td>
-      <td>dorothea</td>
-      <td>Vigilante Shit</td>
-      <td>Florida!!!</td>
-    </tr>
-    <tr>
-      <td>9</td>
-      <td>Should've Said No</td>
-      <td>You're Not Sorry</td>
-      <td>Enchanted</td>
-      <td>Stay Stay Stay</td>
-      <td>Wildest Dreams</td>
-      <td>Getaway Car</td>
-      <td>Cornelia Street</td>
-      <td>this is me trying</td>
-      <td>coney island</td>
-      <td>Bejeweled</td>
-      <td>Guilty as Sin?</td>
-    </tr>
-    <tr>
-      <td>10</td>
-      <td>Mary's Song (Oh My My My)</td>
-      <td>The Way I Loved You</td>
-      <td>Better than Revenge</td>
-      <td>The Last Time</td>
-      <td>How You Get The Girl</td>
-      <td>King Of My Heart</td>
-      <td>Death By A Thousand Cuts</td>
-      <td>illicit affairs</td>
-      <td>ivy</td>
-      <td>Labyrinth</td>
-      <td>Whos Afraid of Little Old Me?</td>
-    </tr>
-    <tr>
-      <td>11</td>
-      <td>Our Song</td>
-      <td>Forever & Always</td>
-      <td>Innocent</td>
-      <td>Holy Ground</td>
-      <td>This Love</td>
-      <td>Dancing With Our Hands Tied</td>
-      <td>London Boy</td>
-      <td>invisible string</td>
-      <td>cowboy like me</td>
-      <td>Karma</td>
-      <td>I Can Fix Him (No Really I Can)</td>
-    </tr>
-    <tr>
-      <td>12</td>
-      <td></td>
-      <td>The Best Day</td>
-      <td>Haunted</td>
-      <td>Sad Beautiful Tragic</td>
-      <td>I Know Places</td>
-      <td>Dress</td>
-      <td>Soon Youll Get Better</td>
-      <td>mad woman</td>
-      <td>long story short</td>
-      <td>Sweet Nothing</td>
-      <td>loml</td>
-    </tr>
-    <tr>
-      <td>13</td>
-      <td></td>
-      <td>Change</td>
-      <td>Last Kiss</td>
-      <td>The Lucky One</td>
-      <td>Clean</td>
-      <td>This Is Why We Cant Have Nice Things</td>
-      <td>False God</td>
-      <td>epiphany</td>
-      <td>marjorie</td>
-      <td>Mastermind</td>
-      <td>I Can Do It With a Broken Heart</td>
-    </tr>
-    <tr>
-      <td>14</td>
-      <td></td>
-      <td>Jump Then Fall</td>
-      <td>Long Live</td>
-      <td>Everything Has Changed</td>
-      <td>Wonderland</td>
-      <td>Call It What You Want</td>
-      <td>You Need To Calm Down</td>
-      <td>betty</td>
-      <td>closure</td>
-      <td>The Great War</td>
-      <td>The Smallest Man Who Ever Lived</td>
-    </tr>
-    <tr>
-      <td>15</td>
-      <td></td>
-      <td>Untouchable</td>
-      <td>Ours</td>
-      <td>Starlight</td>
-      <td>You Are In Love</td>
-      <td>New Years Day</td>
-      <td>Afterglow</td>
-      <td>peace</td>
-      <td>evermore</td>
-      <td>Bigger Than The Whole Sky</td>
-      <td>The Alchemy</td>
-    </tr>
-    <tr>
-      <td>16</td>
-      <td></td>
-      <td>Forever & Always (Piano Version)</td>
-      <td>Superman</td>
-      <td>Begin Again</td>
-      <td>New Romantics</td>
-      <td></td>
-      <td>ME!</td>
-      <td>hoax</td>
-      <td>right where you left me</td>
-      <td>Paris</td>
-      <td>Clara Bow</td>
-    </tr>
-    <tr>
-      <td>17</td>
-      <td></td>
-      <td>Come In with the Rain</td>
-      <td>Electric Touch (From The Vault)</td>
-      <td>The Moment I Knew</td>
-      <td>"Slut!" (From The Vault)</td>
-      <td></td>
-      <td>Its Nice To Have A Friend</td>
-      <td>the lakes</td>
-      <td>its time to go</td>
-      <td>High Infidelity</td>
-      <td>The Manuscript</td>
-    </tr>
-    <tr>
-      <td>18</td>
-      <td></td>
-      <td>Superstar</td>
-      <td>When Emma Falls in Love (From The Vault)</td>
-      <td>Come Back...Be Here</td>
-      <td>Say Dont Go (From The Vault)</td>
-      <td></td>
-      <td>Daylight</td>
-      <td></td>
-      <td></td>
-      <td>Glitch</td>
-      <td>The Bolter</td>
-    </tr>
-    <tr>
-      <td>19</td>
-      <td></td>
-      <td>The Other Side of the Door</td>
-      <td>I Can See You (From The Vault)</td>
-      <td>Girl At Home</td>
-      <td>Now That We Dont Talk (From The Vault)</td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td>Wouldve, Couldve, Shouldve</td>
-      <td>The Albatross</td>
-    </tr>
-    <tr>
-      <td>20</td>
-      <td></td>
-      <td>Today Was A Fairytale</td>
-      <td>Castles Crumbling (From The Vault)</td>
-      <td>State Of Grace (Acoustic Version)</td>
-      <td>Suburban Legends (From The Vault)</td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td>Dear Reader</td>
-      <td>The Black Dog</td>
-    </tr>
-    <tr>
-      <td>21</td>
-      <td></td>
-      <td>You All Over Me (From The Vault)</td>
-      <td>Foolish One (From The Vault)</td>
-      <td>Ronan</td>
-      <td>Is It Over Now? (From The Vault)</td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td>Hits Different</td>
-      <td></td>
-    </tr>
-    <tr>
-      <td>22</td>
-      <td></td>
-      <td>Mr. Perfectly Fine (From The Vault)</td>
-      <td>Timeless (From The Vault)</td>
-      <td>Better Man (From The Vault)</td>
-      <td>Bad Blood (feat. Kendrick Lamar)</td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td>Snow On The Beach (feat. More Lana Del Rey)</td>
-      <td></td>
-    </tr>
-    <tr>
-      <td>23</td>
-      <td></td>
-      <td>We Were Happy (From The Vault)</td>
-      <td></td>
-      <td>Nothing New (From The Vault)</td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td>Karma (feat. Ice Spice)</td>
-      <td></td>
-    </tr>
-    <tr>
-      <td>24</td>
-      <td></td>
-      <td>Thats When (From The Vault)</td>
-      <td></td>
-      <td>Babe (From The Vault)</td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td>Youre Losing Me (From The Vault)</td>
-      <td></td>
-    </tr>
-    <tr>
-      <td>25</td>
-      <td></td>
-      <td>Dont You (From The Vault)</td>
-      <td></td>
-      <td>Message In A Bottle (From The Vault)</td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-    </tr>
-    <tr>
-      <td>26</td>
-      <td></td>
-      <td>Bye Bye Baby (From The Vault)</td>
-      <td></td>
-      <td>I Bet You Think About Me (From The Vault)</td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-    </tr>
-    <tr>
-      <td>27</td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td>Forever Winter (From The Vault)</td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-    </tr>
-    <tr>
-      <td>28</td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td>Run (From The Vault)</td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-    </tr>
-    <tr>
-      <td>29</td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td>The Very First Night (From The Vault)</td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-    </tr>
-    <tr>
-      <td>30</td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td>All Too Well (10 Minutes Version) (From The Vault)</td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-      <td></td>
-    </tr>
-    <!-- Add more rows for additional tracks -->
-  </tbody>
-</table>
 
+<body class="bg-gray-900 text-white">
+    <div class="container mx-auto my-8">
+        <div class="flex justify-center mb-4">
+            <input type="number" id="numberInput" placeholder="Enter number" class="text-black right-aligned-text" />
+            <button onclick="goToNumber()" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded ml-2">
+                 Go to Number
+            </button>
+        </div>
+        <!-- ... rest of the layout ... -->
+        <div class="overflow-x-auto">
+            <table class="table-auto w-full text-center">
+                <thead>
+                    <tr class="text-shadow">
+                        <!-- album names -->
+                        <th class="table-header bg-black-100 rounded-tl">Number</th>
+                        <th class="table-header bg-debut">Debut</th>
+                        <th class="table-header bg-fearless">Fearless Taylor's Version</th>
+                        <th class="table-header bg-speak-now">Speak Now Taylor's Version</th>
+                        <th class="table-header bg-red">Red Taylor's Version</th>
+                        <th class="table-header bg-1989">1989 Taylor's Version</th>
+                        <th class="table-header bg-reputation">reputation</th>
+                        <th class="table-header bg-lover">Lover</th>
+                        <th class="table-header bg-folklore">folklore</th>
+                        <th class="table-header bg-evermore">evermore</th>
+                        <th class="table-header bg-midnights">Midnights</th>
+                        <th class="table-header bg-ttpd rounded-tr">The Tortured Poets Department</th>
+                    </tr>
+                </thead>
+
+                <script>
+                    function goToNumber() {
+                        // Remove existing glow effects
+                        document.querySelectorAll('.glow-effect').forEach(el => el.classList.remove('glow-effect'));
+        
+                        var number = document.getElementById('numberInput').value;
+                        var element = document.getElementById('num' + number);
+                        if (element) {
+                            element.scrollIntoView({ behavior: 'smooth' });
+                            element.classList.add('glow-effect'); // Add glow effect to the row
+                            var rect = element.getBoundingClientRect();
+                            var scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+                            var middle = rect.top + scrollTop - (window.innerHeight / 2);
+                            window.scrollTo({
+                                top: middle,
+                                behavior: 'smooth'
+                            });
+                        } else {
+                            alert('Number not found.');
+                        }
+                    }
+                </script>
+
+                <!-- track 1 -->
+                <tbody class="divide-y divide-gray-700">
+                    <tr id="num1" class="bg-gray-800 hover:bg-gray-700">
+                        <td class="table-header table-cell rounded-b10">1</td>
+                        <td class="table-header track-name">Tim McGraw</td>
+                        <td class="table-header track-name">Fearless</td>
+                        <td class="table-header track-name">Mine</td>
+                        <td class="table-header track-name">State of Grace</td>
+                        <td class="table-header track-name">Welcome to New York</td>
+                        <td class="table-header track-name">...Ready for It?</td>
+                        <td class="table-header track-name">I Forgot That You Existed</td>
+                        <td class="table-header track-name">the 1</td>
+                        <td class="table-header track-name">willow</td>
+                        <td class="table-header track-name">Lavender Haze</td>
+                        <td class="table-header track-name table-cell rounded-br">Fortnight</td>
+                    </tr>
+                </tbody>
+                
+                <!-- track 2 -->
+                <tbody class="divide-y divide-gray-700">
+                    <tr id="num2" class="bg-gray-600 hover:bg-gray-500">
+                        <td class="table-header">2</td>
+                        <td class="table-header track-name">Picture to Burn</td>
+                        <td class="table-header track-name">Fifteen</td>
+                        <td class="table-header track-name">Sparks Fly</td>
+                        <td class="table-header track-name">Red</td>
+                        <td class="table-header track-name">Blank Space</td>
+                        <td class="table-header track-name">End Game</td>
+                        <td class="table-header track-name">Cruel Summer</td>
+                        <td class="table-header track-name">cardigan</td>
+                        <td class="table-header track-name">champagne problems</td>
+                        <td class="table-header track-name">Maroon</td>
+                        <td class="table-header track-name">The Tortured Poets Department</td>
+                    </tr>
+                </tbody>
+
+                <!-- track 3 -->
+                <tbody class="divide-y divide-gray-700">
+                    <tr id="num3" class="bg-gray-800 hover:bg-gray-700">
+                        <td class="table-header">3</td>
+                        <td class="table-header track-name">Teardrops on My Guitar</td>
+                        <td class="table-header track-name">Love Story</td>
+                        <td class="table-header track-name">Back to December</td>
+                        <td class="table-header track-name">Treacherous</td>
+                        <td class="table-header track-name">Style</td>
+                        <td class="table-header track-name">I Did Something Bad</td>
+                        <td class="table-header track-name">Lover</td>
+                        <td class="table-header track-name">the last great american dynasty</td>
+                        <td class="table-header track-name">gold rush</td>
+                        <td class="table-header track-name">Anti-Hero</td>
+                        <td class="table-header track-name">My Boy Only Breaks His Favorite Toys</td>
+                    </tr>
+                </tbody>
+
+                <!-- track 4 -->
+                <tbody class="divide-y divide-gray-700">
+                    <tr id="num4" class="bg-gray-600 hover:bg-gray-500">
+                        <td class="table-header">4</td>
+                        <td class="table-header track-name">A Place in this World</td>
+                        <td class="table-header track-name">Hey Stephen</td>
+                        <td class="table-header track-name">Speak Now</td>
+                        <td class="table-header track-name">I Knew You Were Trouble</td>
+                        <td class="table-header track-name">Out of the Woods</td>
+                        <td class="table-header track-name">Dont Blame Me</td>
+                        <td class="table-header track-name">The Man</td>
+                        <td class="table-header track-name">exile</td>
+                        <td class="table-header track-name">tis the damn season</td>
+                        <td class="table-header track-name">Snow on the Beach</td>
+                        <td class="table-header track-name">Down Bad</td>
+                    </tr>
+                </tbody>
+
+                <!-- track 5 -->
+                <tbody class="divide-y divide-gray-700">
+                    <tr id="num5" class="bg-gray-800 hover:bg-gray-700">
+                        <td class="table-header">5</td>
+                        <td class="table-header track-name">Cold As You</td>
+                        <td class="table-header track-name">White Horse</td>
+                        <td class="table-header track-name">Dear John</td>
+                        <td class="table-header track-name">All Too Well</td>
+                        <td class="table-header track-name">All You Had to Do Was Stay</td>
+                        <td class="table-header track-name">Delicate</td>
+                        <td class="table-header track-name">The Archer</td>
+                        <td class="table-header track-name">my tears ricochet</td>
+                        <td class="table-header track-name">tolerate it</td>
+                        <td class="table-header track-name">You're on your own, Kid</td>
+                        <td class="table-header track-name">So Long, London</td>
+                    </tr>
+                </tbody>
+
+                <!-- track 6 -->
+                <tbody class="divide-y divide-gray-700">
+                    <tr id="num6" class="bg-gray-600 hover:bg-gray-500">
+                        <td class="table-header">6</td>
+                        <td class="table-header track-name">The Outside</td>
+                        <td class="table-header track-name">You Belong with Me</td>
+                        <td class="table-header track-name">Mean</td>
+                        <td class="table-header track-name">22</td>
+                        <td class="table-header track-name">Shake It Off</td>
+                        <td class="table-header track-name">Look What You Made Me Do</td>
+                        <td class="table-header track-name">I Think He Knows</td>
+                        <td class="table-header track-name">mirrorball</td>
+                        <td class="table-header track-name">no body, no crime</td>
+                        <td class="table-header track-name">Midnight Rain</td>
+                        <td class="table-header track-name">But Daddy I Love Him</td>
+                    </tr>
+                </tbody>
+
+                <!-- track 7 -->
+                <tbody class="divide-y divide-gray-700">
+                    <tr id="num7" class="bg-gray-800 hover:bg-gray-700">
+                        <td class="table-header">7</td>
+                        <td class="table-header track-name">Tied Together With A Smile</td>
+                        <td class="table-header track-name">Breathe</td>
+                        <td class="table-header track-name">The Story of Us</td>
+                        <td class="table-header track-name">I Almost Do</td>
+                        <td class="table-header track-name">I Wish You Would</td>
+                        <td class="table-header track-name">So it Goes...</td>
+                        <td class="table-header track-name">Miss Americana & The Heartbreak Prince</td>
+                        <td class="table-header track-name">seven</td>
+                        <td class="table-header track-name">happiness</td>
+                        <td class="table-header track-name">Question...?</td>
+                        <td class="table-header track-name">Fresh Out the Slammer</td>
+                    </tr>
+                </tbody>
+
+                <!-- track 8 -->
+                <tbody class="divide-y divide-gray-700">
+                    <tr id="num8" class="bg-gray-600 hover:bg-gray-500">
+                        <td class="table-header">8</td>
+                        <td class="table-header track-name">Stay Beautiful</td>
+                        <td class="table-header track-name">Tell Me Why</td>
+                        <td class="table-header track-name">Never Grow Up</td>
+                        <td class="table-header track-name">We Are Never Ever Getting Back Together</td>
+                        <td class="table-header track-name">Bad Blood</td>
+                        <td class="table-header track-name">Gorgeous</td>
+                        <td class="table-header track-name">Paper Rings</td>
+                        <td class="table-header track-name">august</td>
+                        <td class="table-header track-name">dorothea</td>
+                        <td class="table-header track-name">Vigilante Shit</td>
+                        <td class="table-header track-name">Florida!!!</td>
+                    </tr>
+                </tbody>
+
+                <!-- track 9 -->
+                <tbody class="divide-y divide-gray-700">
+                    <tr id="num9" class="bg-gray-800 hover:bg-gray-700">
+                        <td class="table-header">9</td>
+                        <td class="table-header track-name">Should've Said No</td>
+                        <td class="table-header track-name">You're Not Sorry</td>
+                        <td class="table-header track-name">Enchanted</td>
+                        <td class="table-header track-name">Stay Stay Stay</td>
+                        <td class="table-header track-name">Wildest Dreams</td>
+                        <td class="table-header track-name">Getaway Car</td>
+                        <td class="table-header track-name">Cornelia Street</td>
+                        <td class="table-header track-name">this is me trying</td>
+                        <td class="table-header track-name">coney island</td>
+                        <td class="table-header track-name">Bejeweled</td>
+                        <td class="table-header track-name">Guilty as Sin?</td>
+                    </tr>
+                </tbody>
+
+                <!-- track 10 -->
+                <tbody class="divide-y divide-gray-700">
+                    <tr id="num10" class="bg-gray-600 hover:bg-gray-500">
+                        <td class="table-header">10</td>
+                        <td class="table-header track-name">Mary's Song (Oh My My My)</td>
+                        <td class="table-header track-name">The Way I Loved You</td>
+                        <td class="table-header track-name">Better than Revenge</td>
+                        <td class="table-header track-name">The Last Time</td>
+                        <td class="table-header track-name">How You Get The Girl</td>
+                        <td class="table-header track-name">King Of My Heart</td>
+                        <td class="table-header track-name">Death By A Thousand Cuts</td>
+                        <td class="table-header track-name">illicit affairs</td>
+                        <td class="table-header track-name">ivy</td>
+                        <td class="table-header track-name">Labyrinth</td>
+                        <td class="table-header track-name">Whos Afraid of Little Old Me?</td>
+                    </tr>
+                </tbody>
+
+                <!-- track 11 -->
+                <tbody id="num11" class="divide-y divide-gray-700">
+                    <tr class="bg-gray-800 hover:bg-gray-700">
+                        <td class="table-header">11</td>
+                        <td class="table-header track-name">Our Song</td>
+                        <td class="table-header track-name">Forever & Always</td>
+                        <td class="table-header track-name">Innocent</td>
+                        <td class="table-header track-name">Holy Ground</td>
+                        <td class="table-header track-name">This Love</td>
+                        <td class="table-header track-name">Dancing With Our Hands Tied</td>
+                        <td class="table-header track-name">London Boy</td>
+                        <td class="table-header track-name">invisible string</td>
+                        <td class="table-header track-name">cowboy like me</td>
+                        <td class="table-header track-name">Karma</td>
+                        <td class="table-header track-name">I Can Fix Him (No Really I Can)</td>
+                    </tr>
+                </tbody>
+
+                <!-- track 12 -->
+                <tbody class="divide-y divide-gray-700">
+                    <tr id="num12" class="bg-gray-600 hover:bg-gray-500">
+                        <td class="table-header">12</td>
+                        <td class="table-header track-name"></td>
+                        <td class="table-header track-name">The Best Day</td>
+                        <td class="table-header track-name">Haunted</td>
+                        <td class="table-header track-name">Sad Beautiful Tragic</td>
+                        <td class="table-header track-name">I Know Places</td>
+                        <td class="table-header track-name">Dress</td>
+                        <td class="table-header track-name">Soon You'll Get Better</td>
+                        <td class="table-header track-name">mad woman</td>
+                        <td class="table-header track-name">long story short</td>
+                        <td class="table-header track-name">Sweet Nothing</td>
+                        <td class="table-header track-name">loml</td>
+                    </tr>
+                </tbody>
+
+                <!-- track 13 -->
+                <tbody class="divide-y divide-gray-700">
+                    <tr id="num13" class="bg-gray-800 hover:bg-gray-700">
+                        <td class="table-header">13</td>
+                        <td class="table-header track-name"></td>
+                        <td class="table-header track-name">Change</td>
+                        <td class="table-header track-name">Last Kiss</td>
+                        <td class="table-header track-name">The Lucky One</td>
+                        <td class="table-header track-name">Clean</td>
+                        <td class="table-header track-name">This Is Why We Can't Have Nice Things</td>
+                        <td class="table-header track-name">False God</td>
+                        <td class="table-header track-name">epiphany</td>
+                        <td class="table-header track-name">marjorie</td>
+                        <td class="table-header track-name">Mastermind</td>
+                        <td class="table-header track-name">I Can Do It With a Broken Heart</td>
+                    </tr>
+                </tbody>
+
+                <!-- track 14 -->
+                <tbody class="divide-y divide-gray-700">
+                    <tr id="num14" class="bg-gray-600 hover:bg-gray-500">
+                        <td class="table-header">14</td>
+                        <td class="table-header track-name"></td>
+                        <td class="table-header track-name">Jump Then Fall</td>
+                        <td class="table-header track-name">Long Live</td>
+                        <td class="table-header track-name">Everything Has Changed</td>
+                        <td class="table-header track-name">Wonderland</td>
+                        <td class="table-header track-name">Call It What You Want</td>
+                        <td class="table-header track-name">You Need To Calm Down</td>
+                        <td class="table-header track-name">betty</td>
+                        <td class="table-header track-name">closure</td>
+                        <td class="table-header track-name">The Great War</td>
+                        <td class="table-header track-name">The Smallest Man Who Ever Lived</td>
+                    </tr>
+                </tbody>
+
+                <!-- track 15 -->
+                <tbody class="divide-y divide-gray-700">
+                    <tr id="num15" class="bg-gray-800 hover:bg-gray-700">
+                        <td class="table-header">15</td>
+                        <td class="table-header track-name"></td>
+                        <td class="table-header track-name">Untouchable</td>
+                        <td class="table-header track-name">Ours</td>
+                        <td class="table-header track-name">Starlight</td>
+                        <td class="table-header track-name">You Are In Love</td>
+                        <td class="table-header track-name">New Years Day</td>
+                        <td class="table-header track-name">Afterglow</td>
+                        <td class="table-header track-name">peace</td>
+                        <td class="table-header track-name">evermore</td>
+                        <td class="table-header track-name">Bigger Than The Whole Sky</td>
+                        <td class="table-header track-name">The Alchemy</td>
+                    </tr>
+                </tbody>
+
+                <!-- track 16 -->
+                <tbody class="divide-y divide-gray-700">
+                    <tr id="num16" class="bg-gray-600 hover:bg-gray-500">
+                        <td class="table-header">16</td>
+                        <td class="table-header track-name"></td>
+                        <td class="table-header track-name">Forever & Always (Piano Version)</td>
+                        <td class="table-header track-name">Superman</td>
+                        <td class="table-header track-name">Begin Again</td>
+                        <td class="table-header track-name">New Romantics</td>
+                        <td class="table-header track-name"></td>
+                        <td class="table-header track-name">ME!</td>
+                        <td class="table-header track-name">hoax</td>
+                        <td class="table-header track-name">right where you left me</td>
+                        <td class="table-header track-name">Paris</td>
+                        <td class="table-header track-name">Clara Bow</td>
+                    </tr>
+                </tbody>
+
+                <!-- track 17 -->
+                <tbody class="divide-y divide-gray-700">
+                    <tr id="num17" class="bg-gray-800 hover:bg-gray-700">
+                        <td class="table-header">17</td>
+                        <td class="table-header track-name"></td>
+                        <td class="table-header track-name">Come In with the Rain</td>
+                        <td class="table-header track-name">Electric Touch (From The Vault)</td>
+                        <td class="table-header track-name">The Moment I Knew</td>
+                        <td class="table-header track-name">"Slut!" (From The Vault)</td>
+                        <td class="table-header track-name"></td>
+                        <td class="table-header track-name">Its Nice To Have A Friend</td>
+                        <td class="table-header track-name">the lakes</td>
+                        <td class="table-header track-name">its time to go</td>
+                        <td class="table-header track-name">High Infidelity</td>
+                        <td class="table-header track-name">The Manuscript</td>
+                    </tr>
+                </tbody>
+
+                <!-- track 18 -->
+                <tbody class="divide-y divide-gray-700">
+                    <tr id="num18" class="bg-gray-600 hover:bg-gray-500">
+                        <td class="table-header">18</td>
+                        <td class="table-header track-name"></td>
+                        <td class="table-header track-name">Superstar</td>
+                        <td class="table-header track-name">When Emma Falls in Love (From The Vault)</td>
+                        <td class="table-header track-name">Come Back...Be Here</td>
+                        <td class="table-header track-name">Say Dont Go (From The Vault)</td>
+                        <td class="table-header track-name"></td>
+                        <td class="table-header track-name">Daylight</td>
+                        <td class="table-header track-name"></td>
+                        <td class="table-header track-name"></td>
+                        <td class="table-header track-name">Glitch</td>
+                        <td class="table-header track-name">The Bolter</td>
+                    </tr>
+                </tbody>
+
+                <!-- track 19 -->
+                <tbody class="divide-y divide-gray-700">
+                    <tr id="num19" class="bg-gray-800 hover:bg-gray-700">
+                        <td class="table-header">19</td>
+                        <td class="table-header track-name"></td>
+                        <td class="table-header track-name">The Other Side of the Door</td>
+                        <td class="table-header track-name">I Can See You (From The Vault)</td>
+                        <td class="table-header track-name">Girl At Home</td>
+                        <td class="table-header track-name">Now That We Dont Talk (From The Vault)</td>
+                        <td class="table-header track-name"></td>
+                        <td class="table-header track-name"></td>
+                        <td class="table-header track-name"></td>
+                        <td class="table-header track-name"></td>
+                        <td class="table-header track-name">Wouldve, Couldve, Shouldve</td>
+                        <td class="table-header track-name">The Albatross</td>
+                    </tr>
+                </tbody>
+
+                <!-- track 20 -->
+                <tbody class="divide-y divide-gray-700">
+                    <tr id="num20" class="bg-gray-600 hover:bg-gray-500">
+                        <td class="table-header">20</td>
+                        <td class="table-header track-name"></td>
+                        <td class="table-header track-name">Today Was A Fairytale</td>
+                        <td class="table-header track-name">Castles Crumbling (From The Vault)</td>
+                        <td class="table-header track-name">State Of Grace (Acoustic Version)</td>
+                        <td class="table-header track-name">Suburban Legends (From The Vault)</td>
+                        <td class="table-header track-name"></td>
+                        <td class="table-header track-name"></td>
+                        <td class="table-header track-name"></td>
+                        <td class="table-header track-name"></td>
+                        <td class="table-header track-name">Dear Reader</td>
+                        <td class="table-header track-name">The Black Dog</td>
+                    </tr>
+                </tbody>
+
+                <!-- track 21 -->
+                <tbody class="divide-y divide-gray-700">
+                    <tr id="num21" class="bg-gray-800 hover:bg-gray-700">
+                        <td class="table-header">21</td>
+                        <td class="table-header track-name"></td>
+                        <td class="table-header track-name">You All Over Me (From The Vault)</td>
+                        <td class="table-header track-name">Foolish One (From The Vault)</td>
+                        <td class="table-header track-name">Ronan</td>
+                        <td class="table-header track-name">Is It Over Now? (From The Vault)</td>
+                        <td class="table-header track-name"></td>
+                        <td class="table-header track-name"></td>
+                        <td class="table-header track-name"></td>
+                        <td class="table-header track-name"></td>
+                        <td class="table-header track-name">Hits Different</td>
+                        <td class="table-header track-name"></td>
+                    </tr>
+                </tbody>
+
+                <!-- track 22 -->
+                <tbody class="divide-y divide-gray-700">
+                    <tr id="num22" class="bg-gray-600 hover:bg-gray-500">
+                        <td class="table-header">22</td>
+                        <td class="table-header track-name"></td>
+                        <td class="table-header track-name">Mr. Perfectly Fine (From The Vault)</td>
+                        <td class="table-header track-name">Timeless (From The Vault)</td>
+                        <td class="table-header track-name">Better Man (From The Vault)</td>
+                        <td class="table-header track-name">Bad Blood (feat. Kendrick Lamar)</td>
+                        <td class="table-header track-name"></td>
+                        <td class="table-header track-name"></td>
+                        <td class="table-header track-name"></td>
+                        <td class="table-header track-name"></td>
+                        <td class="table-header track-name">Snow On The Beach (feat. More Lana Del Rey)</td>
+                        <td class="table-header track-name"></td>
+                    </tr>
+                </tbody>
+
+                <!-- track 23 -->
+                <tbody class="divide-y divide-gray-700">
+                    <tr id="num23" class="bg-gray-800 hover:bg-gray-700">
+                        <td class="table-header">23</td>
+                        <td class="table-header track-name"></td>
+                        <td class="table-header track-name">We Were Happy (From The Vault)</td>
+                        <td class="table-header track-name"></td>
+                        <td class="table-header track-name">Nothing New (From The Vault)</td>
+                        <td class="table-header track-name"></td>
+                        <td class="table-header track-name"></td>
+                        <td class="table-header track-name"></td>
+                        <td class="table-header track-name"></td>
+                        <td class="table-header track-name"></td>
+                        <td class="table-header track-name">Karma (feat. Ice Spice)</td>
+                        <td class="table-header track-name"></td>
+                    </tr>
+                </tbody>
+
+                <!-- track 24 -->
+                <tbody class="divide-y divide-gray-700">
+                    <tr id="num24" class="bg-gray-600 hover:bg-gray-500">
+                        <td class="table-header">24</td>
+                        <td class="table-header track-name"></td>
+                        <td class="table-header track-name">That's When (From The Vault)</td>
+                        <td class="table-header track-name"></td>
+                        <td class="table-header track-name">Babe (From The Vault)</td>
+                        <td class="table-header track-name"></td>
+                        <td class="table-header track-name"></td>
+                        <td class="table-header track-name"></td>
+                        <td class="table-header track-name"></td>
+                        <td class="table-header track-name"></td>
+                        <td class="table-header track-name">You're Losing Me (From The Vault)</td>
+                        <td class="table-header track-name"></td>
+                    </tr>
+                </tbody>
+
+                <!-- track 25 -->
+                <tbody class="divide-y divide-gray-700">
+                    <tr id="num25" class="bg-gray-800 hover:bg-gray-700">
+                        <td class="table-header">25</td>
+                        <td class="table-header track-name"></td>
+                        <td class="table-header track-name">Don't You (From The Vault)</td>
+                        <td class="table-header track-name"></td>
+                        <td class="table-header track-name">Message In A Bottle (From The Vault)</td>
+                        <td class="table-header track-name"></td>
+                        <td class="table-header track-name"></td>
+                        <td class="table-header track-name"></td>
+                        <td class="table-header track-name"></td>
+                        <td class="table-header track-name"></td>
+                        <td class="table-header track-name"></td>
+                        <td class="table-header track-name"></td>
+                    </tr>
+                </tbody>
+
+                <!-- track 26 -->
+                <tbody class="divide-y divide-gray-700">
+                    <tr id="num26" class="bg-gray-600 hover:bg-gray-500">
+                        <td class="table-header">26</td>
+                        <td class="table-header track-name"></td>
+                        <td class="table-header track-name">Bye Bye Baby (From The Vault)</td>
+                        <td class="table-header track-name"></td>
+                        <td class="table-header track-name">I Bet You Think About Me (From The Vault)</td>
+                        <td class="table-header track-name"></td>
+                        <td class="table-header track-name"></td>
+                        <td class="table-header track-name"></td>
+                        <td class="table-header track-name"></td>
+                        <td class="table-header track-name"></td>
+                        <td class="table-header track-name"></td>
+                        <td class="table-header track-name"></td>
+                    </tr>
+                </tbody>
+
+                <!-- track 27 -->
+                <tbody class="divide-y divide-gray-700">
+                    <tr id="num27" class="bg-gray-800 hover:bg-gray-700">
+                        <td class="table-header">27</td>
+                        <td class="table-header track-name"></td>
+                        <td class="table-header track-name"></td>
+                        <td class="table-header track-name"></td>
+                        <td class="table-header track-name">Forever Winter (From The Vault)</td>
+                        <td class="table-header track-name"></td>
+                        <td class="table-header track-name"></td>
+                        <td class="table-header track-name"></td>
+                        <td class="table-header track-name"></td>
+                        <td class="table-header track-name"></td>
+                        <td class="table-header track-name"></td>
+                        <td class="table-header track-name"></td>
+                    </tr>
+                </tbody>
+
+                <!-- track 28 -->
+                <tbody class="divide-y divide-gray-700">
+                    <tr id="num28" class="bg-gray-600 hover:bg-gray-500">
+                        <td class="table-header">28</td>
+                        <td class="table-header track-name"></td>
+                        <td class="table-header track-name"></td>
+                        <td class="table-header track-name"></td>
+                        <td class="table-header track-name">Run (From The Vault)</td>
+                        <td class="table-header track-name"></td>
+                        <td class="table-header track-name"></td>
+                        <td class="table-header track-name"></td>
+                        <td class="table-header track-name"></td>
+                        <td class="table-header track-name"></td>
+                        <td class="table-header track-name"></td>
+                        <td class="table-header track-name"></td>
+                    </tr>
+                </tbody>
+
+                <!-- track 29 -->
+                <tbody class="divide-y divide-gray-700">
+                    <tr id="num29" class="bg-gray-800 hover:bg-gray-700">
+                        <td class="table-header">29</td>
+                        <td class="table-header track-name"></td>
+                        <td class="table-header track-name"></td>
+                        <td class="table-header track-name"></td>
+                        <td class="table-header track-name">The Very First Night (From The Vault)</td>
+                        <td class="table-header track-name"></td>
+                        <td class="table-header track-name"></td>
+                        <td class="table-header track-name"></td>
+                        <td class="table-header track-name"></td>
+                        <td class="table-header track-name"></td>
+                        <td class="table-header track-name"></td>
+                        <td class="table-header track-name"></td>
+                    </tr>
+                </tbody>
+
+                <!-- track 30 -->
+                <tbody class="divide-y divide-gray-700">
+                    <tr id="num30" class="bg-gray-600 hover:bg-gray-500">
+                        <td class="table-header">30</td>
+                        <td class="table-header track-name"></td>
+                        <td class="table-header track-name"></td>
+                        <td class="table-header track-name"></td>
+                        <td class="table-header track-name">All Too Well (10 Minutes Version) (From The Vault)</td>
+                        <td class="table-header track-name"></td>
+                        <td class="table-header track-name"></td>
+                        <td class="table-header track-name"></td>
+                        <td class="table-header track-name"></td>
+                        <td class="table-header track-name"></td>
+                        <td class="table-header track-name"></td>
+                        <td class="table-header track-name"></td>
+                    </tr>
+                </tbody>
+
+
+            </table>
+        </div>
+        <div class="donate-button">
+            <script type="text/javascript" src="https://cdnjs.buymeacoffee.com/1.0.0/button.prod.min.js" data-name="bmc-button" data-slug="shianmike27" data-color="#5F7FFF" data-emoji="☕"  data-font="Cookie" data-text="Buy me a coffee" data-outline-color="#000000" data-font-color="#ffffff" data-coffee-color="#FFDD00" ></script>
+        </div>
+        <!-- ... rest of the layout ... -->
+    </div>
+    <!-- ... rest of the body ... -->
 </body>
 </html>
