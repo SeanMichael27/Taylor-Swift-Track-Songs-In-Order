@@ -1,3 +1,4 @@
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -13,16 +14,16 @@
 
         .table-header {
             width: calc(100% / 12);
-            padding: 1rem; /* Add padding for cell spacing */
+            padding: 1rem;
             border-spacing: 0;
             border-collapse: separate;
         }
 
-        .rounded-tl { border-top-left-radius: 0.5rem; } /* Top left radius */
-        .rounded-tr { border-top-right-radius: 0.5rem; } /* Top right radius */
-        .rounded-bl { border-bottom-left-radius: 0.5rem; } /* Bottom left radius */
-        .rounded-br { border-bottom-right-radius: 0.5rem; } /* Bottom right radius */
-        .table-cell { border-radius: 0.25rem; } /* Rounded corners for all cells */
+        .rounded-tl { border-top-left-radius: 0.5rem; }
+        .rounded-tr { border-top-right-radius: 0.5rem; }
+        .rounded-bl { border-bottom-left-radius: 0.5rem; }
+        .rounded-br { border-bottom-right-radius: 0.5rem; }
+        .table-cell { border-radius: 0.25rem; }
         
         .bg-debut { background-color: #a9eee4; } /* Green */
         .bg-fearless { background-color: gold; } /* Gold Yellow */
@@ -41,7 +42,7 @@
         }
 
         .track-name {
-            font-size: 0.75rem; /* Smaller font size for track names */
+            font-size: 0.75rem;
         }
 
         .right-aligned-text {
@@ -50,8 +51,8 @@
 
         .glow-effect {
             animation: glow 1.5s ease-in-out infinite alternate;
-            position: relative; /* Make sure z-index is effective */
-            z-index: 100; /* Higher than the z-index (if any) of elements that might cover it */
+            position: relative;
+            z-index: 100;
         }
 
        @keyframes glow {
@@ -63,11 +64,17 @@
             }
         }
 
-        .donate-button {
+        @media (max-width: 640px) {
+            .glow-effect {
+                box-shadow: 0 0 4px rgba(104, 112, 218, 0.5), 0 0 6px rgba(104, 112, 218, 0.5);
+            }
+        }
+
+        .lyric-button{
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 20vh; /* Set height to full viewport height */
+            height: 20vh;
         }
     </style>
 </head>
@@ -75,18 +82,22 @@
 <body class="bg-gray-900 text-white">
     <div class="container mx-auto my-8">
         <div class="flex justify-center mb-4">
-            <input type="number" id="numberInput" placeholder="Enter number" class="text-black right-aligned-text" />
+            <input type="number" id="numberInput" placeholder="Enter number" class="text-black left-aligned-text pl-2" />
+            <button onclick="clearInput()" class="bg-red-600 hover:bg-red-800 text-white font-bold py-2 px-4 rounded ml-2">
+                X
+            </button>
+    
             <button onclick="goToNumber()" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded ml-2">
                  Go to Number
             </button>
         </div>
-        <!-- ... rest of the layout ... -->
-        <div class="overflow-x-auto">
+
+        <div class="overflow-x-auto" id="albumHeader">
             <table class="table-auto w-full text-center">
                 <thead>
                     <tr class="text-shadow">
                         <!-- album names -->
-                        <th class="table-header bg-black-100 rounded-tl">Number</th>
+                        <th class="table-header bg-gray-300 rounded-tl">Track Number</th>
                         <th class="table-header bg-debut">Debut</th>
                         <th class="table-header bg-fearless">Fearless Taylor's Version</th>
                         <th class="table-header bg-speak-now">Speak Now Taylor's Version</th>
@@ -102,32 +113,71 @@
                 </thead>
 
                 <script>
+                    document.getElementById('numberInput').addEventListener('keypress', function(event) {
+                        if (event.key === 'Enter') {
+                            goToNumber();
+                        }
+                    });
+                
+                    function clearInput() {
+                        document.getElementById('numberInput').value = '';
+                        showAllTracks();
+                        checkBackToTopVisibility();
+                    }
+                
                     function goToNumber() {
-                        // Remove existing glow effects
                         document.querySelectorAll('.glow-effect').forEach(el => el.classList.remove('glow-effect'));
-        
+                
                         var number = document.getElementById('numberInput').value;
                         var element = document.getElementById('num' + number);
+                
                         if (element) {
+                            hideOtherTracks(element);
                             element.scrollIntoView({ behavior: 'smooth' });
-                            element.classList.add('glow-effect'); // Add glow effect to the row
-                            var rect = element.getBoundingClientRect();
-                            var scrollTop = window.pageYOffset || document.documentElement.scrollTop;
-                            var middle = rect.top + scrollTop - (window.innerHeight / 2);
-                            window.scrollTo({
-                                top: middle,
-                                behavior: 'smooth'
-                            });
+                            element.classList.add('glow-effect');
                         } else {
                             alert('Number not found.');
                         }
                     }
-                </script>
 
+                    function openTaylorLyricSearch() {
+                        window.open("https://ts-lyrics.netlify.app", "_blank");
+                    }
+                
+                    function buyMeACoffee() {
+                        window.open("https://www.buymeacoffee.com/shianmike27", "_blank");
+                    }
+                
+                    function hideOtherTracks(selectedElement) {
+                        var tableRows = document.querySelectorAll('tbody tr');
+                        tableRows.forEach(row => {
+                            if (row.id !== selectedElement.id) {
+                                row.style.display = 'none';
+                            }
+                        });
+                    }
+                
+                    function showAllTracks() {
+                        var tableRows = document.querySelectorAll('tbody tr');
+                        tableRows.forEach(row => {
+                            row.style.display = '';
+                        });
+                    }
+                </script>
+                
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="overflow-x-auto">
+        <table class="table-auto w-full text-center">
+            <thead>
+                <tr class="text-shadow">
                 <!-- track 1 -->
                 <tbody class="divide-y divide-gray-700">
                     <tr id="num1" class="bg-gray-800 hover:bg-gray-700">
-                        <td class="table-header table-cell rounded-b10">1</td>
+                        <td class="table-header">1</td>
                         <td class="table-header track-name">Tim McGraw</td>
                         <td class="table-header track-name">Fearless</td>
                         <td class="table-header track-name">Mine</td>
@@ -138,7 +188,7 @@
                         <td class="table-header track-name">the 1</td>
                         <td class="table-header track-name">willow</td>
                         <td class="table-header track-name">Lavender Haze</td>
-                        <td class="table-header track-name table-cell rounded-br">Fortnight</td>
+                        <td class="table-header track-name">Fortnight</td>
                     </tr>
                 </tbody>
                 
@@ -190,7 +240,7 @@
                         <td class="table-header track-name">Dont Blame Me</td>
                         <td class="table-header track-name">The Man</td>
                         <td class="table-header track-name">exile</td>
-                        <td class="table-header track-name">'tis the damn season</td>
+                        <td class="table-header track-name">tis the damn season</td>
                         <td class="table-header track-name">Snow on the Beach</td>
                         <td class="table-header track-name">Down Bad</td>
                     </tr>
@@ -326,7 +376,7 @@
                 <tbody class="divide-y divide-gray-700">
                     <tr id="num12" class="bg-gray-600 hover:bg-gray-500">
                         <td class="table-header">12</td>
-                        <td class="table-header track-name">I'm Only Me When I'm With You</td>
+                        <td class="table-header track-name"></td>
                         <td class="table-header track-name">The Best Day</td>
                         <td class="table-header track-name">Haunted</td>
                         <td class="table-header track-name">Sad Beautiful Tragic</td>
@@ -344,7 +394,7 @@
                 <tbody class="divide-y divide-gray-700">
                     <tr id="num13" class="bg-gray-800 hover:bg-gray-700">
                         <td class="table-header">13</td>
-                        <td class="table-header track-name">Invisible</td>
+                        <td class="table-header track-name"></td>
                         <td class="table-header track-name">Change</td>
                         <td class="table-header track-name">Last Kiss</td>
                         <td class="table-header track-name">The Lucky One</td>
@@ -362,7 +412,7 @@
                 <tbody class="divide-y divide-gray-700">
                     <tr id="num14" class="bg-gray-600 hover:bg-gray-500">
                         <td class="table-header">14</td>
-                        <td class="table-header track-name">A Perfectly Good Heart</td>
+                        <td class="table-header track-name"></td>
                         <td class="table-header track-name">Jump Then Fall</td>
                         <td class="table-header track-name">Long Live</td>
                         <td class="table-header track-name">Everything Has Changed</td>
@@ -385,7 +435,7 @@
                         <td class="table-header track-name">Ours</td>
                         <td class="table-header track-name">Starlight</td>
                         <td class="table-header track-name">You Are In Love</td>
-                        <td class="table-header track-name">New Year's Day</td>
+                        <td class="table-header track-name">New Years Day</td>
                         <td class="table-header track-name">Afterglow</td>
                         <td class="table-header track-name">peace</td>
                         <td class="table-header track-name">evermore</td>
@@ -461,7 +511,7 @@
                         <td class="table-header track-name"></td>
                         <td class="table-header track-name"></td>
                         <td class="table-header track-name"></td>
-                        <td class="table-header track-name">Would've, Could've, Should've</td>
+                        <td class="table-header track-name">Wouldve, Couldve, Shouldve</td>
                         <td class="table-header track-name">The Albatross</td>
                     </tr>
                 </tbody>
@@ -649,7 +699,7 @@
                 <!-- track 30 -->
                 <tbody class="divide-y divide-gray-700">
                     <tr id="num30" class="bg-gray-600 hover:bg-gray-500">
-                        <td class="table-header">30</td>
+                        <td class="table-header rounded-bl rounded-br">30</td>
                         <td class="table-header track-name"></td>
                         <td class="table-header track-name"></td>
                         <td class="table-header track-name"></td>
@@ -660,18 +710,25 @@
                         <td class="table-header track-name"></td>
                         <td class="table-header track-name"></td>
                         <td class="table-header track-name"></td>
-                        <td class="table-header track-name"></td>
+                        <td class="table-header track-name rounded-bl rounded-br"></td>
                     </tr>
                 </tbody>
-
-
             </table>
         </div>
-        <div class="donate-button">
-            <script type="text/javascript" src="https://cdnjs.buymeacoffee.com/1.0.0/button.prod.min.js" data-name="bmc-button" data-slug="shianmike27" data-color="#5F7FFF" data-emoji="☕"  data-font="Cookie" data-text="Buy me a coffee" data-outline-color="#000000" data-font-color="#ffffff" data-coffee-color="#FFDD00" ></script>
+
+        <div class="lyric-button">
+            <button onclick="openTaylorLyricSearch()" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded w-50">
+                🎤 Taylor Lyric Search
+            </button>
+
+            <button onclick="buyMeACoffee()" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded ml-4 w-52">
+                ☕ Buy me a Coffee
+            </button>
         </div>
-        <!-- ... rest of the layout ... -->
+
+        <footer class="text-center text-gray-400 text-sm mt-4">
+            Created By: SeanMike &copy; 2024
+        </footer>
     </div>
-    <!-- ... rest of the body ... -->
 </body>
 </html>
