@@ -1,7 +1,5 @@
 Access the link here https://seanmichael27.github.io/Taylor-Swift-Track-Songs-In-Order/
 
-Faster finding her Track Titles in a Specific Number
+Explore all of Taylor Swift's songs and albums in one easy-to-find spot. No need to search around – everything's right here.
 
-Have a Suggestion? Message me here
-
-Mobile Support - Soon
+Easily find Taylor Swift's songs for lyric racing fun!
